@@ -1,0 +1,17 @@
+1. Go-MyWeb application has been successfully installed!
+
+2. Check application status:
+   kubectl get pods -l "app.kubernetes.io/name={{ .Chart.Name }}"
+
+3. Access the service:
+{{- if eq .Values.service.type "ClusterIP" }}
+   kubectl port-forward svc/{{ .Chart.Name }} 8080:{{ .Values.service.port }}
+   Open http://localhost:8080 in your browser
+{{- else if eq .Values.service.type "NodePort" }}
+   export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ .Chart.Name }})
+   export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+   Open http://$NODE_IP:$NODE_PORT in your browser
+{{- else if eq .Values.service.type "LoadBalancer" }}
+   export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ .Chart.Name }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
+   Open http://$SERVICE_IP:{{ .Values.service.port }} in your browser
+{{- end }}

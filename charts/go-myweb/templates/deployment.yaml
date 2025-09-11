@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name }}
+spec:
+  strategy:
+    type: {{ .Values.strategy.type | default "RollingUpdate" }}
+    {{- if eq .Values.strategy.type "RollingUpdate" }}
+    rollingUpdate:
+      maxUnavailable: {{ .Values.strategy.rollingUpdate.maxUnavailable | default 1 }}
+      maxSurge: {{ .Values.strategy.rollingUpdate.maxSurge | default 1 }}
+    {{- end }}
+  replicas: {{ .Values.replicaCount | default 1 }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Chart.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
