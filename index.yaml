@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  go-myweb:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-09-11T14:44:29.329393+09:00"
+    description: A Helm chart for Go-MyWeb application
+    digest: 5d39b51860d824b88aad9e6a86e61b0fd7b3de858390f41b295569b3268e667c
+    name: go-myweb
+    type: application
+    urls:
+    - https://nobreak-labs.github.io/helm-charts/go-myweb-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-09-11T14:44:29.328819+09:00"
