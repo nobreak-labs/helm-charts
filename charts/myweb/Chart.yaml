@@ -1,0 +1,22 @@
+apiVersion: v2
+name: myweb
+description: A Helm chart for MyWeb application
+type: application
+version: 0.1.0
+appVersion: 1.0.0
+
+keywords:
+  - go
+  - web
+  - application
+  - myweb
+
+sources:
+  - https://github.com/nobreak-labs/helm-charts
+  - https://github.com/orgs/nobreak-labs/packages/container/package/myweb
+
+maintainers:
+  - name: NoBreak Labs
+    email: contact@nobreak-labs.com
+
+kubeVersion: ">=1.19.0-0"

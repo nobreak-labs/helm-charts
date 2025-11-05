@@ -1,0 +1,47 @@
+# Number of replicas
+replicaCount: 1
+
+# Container image settings
+image:
+  repository: ghcr.io/nobreak-labs/myweb
+  tag: stable  # Available: 1.0, 1.1, 1.2, stable, latest
+  pullPolicy: IfNotPresent  # Available: Always, IfNotPresent, Never
+
+# Service settings
+service:
+  type: ClusterIP  # Available: ClusterIP, NodePort, LoadBalancer
+  port: 80
+  # nodePort: 30080  # Required for NodePort/LoadBalancer (30000-32767)
+
+# Resource requests and limits
+resources:
+  requests:
+    cpu: "100m"
+    memory: "64Mi"
+  limits:
+    cpu: "500m"
+    memory: "256Mi"
+
+# Liveness probe configuration
+livenessProbe:
+  httpGet:
+    path: /live
+    port: 8080
+  initialDelaySeconds: 3
+  periodSeconds: 10
+
+# Readiness probe configuration
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+  initialDelaySeconds: 2
+  periodSeconds: 5
+
+# Startup probe configuration
+startupProbe:
+  httpGet:
+    path: /startup
+    port: 8080
+  failureThreshold: 30
+  periodSeconds: 2
