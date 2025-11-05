@@ -1,14 +1,26 @@
 apiVersion: v1
 entries:
-  go-myweb:
+  myweb:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-09-11T15:36:35.802023+09:00"
-    description: A Helm chart for Go-MyWeb application
-    digest: e081e6e4182dea7f071428521104c0c2bd767dd45769c00a3b156f5097385770
-    name: go-myweb
+    created: "2025-11-05T16:06:19.957494+09:00"
+    description: A Helm chart for MyWeb application
+    digest: 6ecd9815d606ed1e0e1c80dc2334bf5445d60316d70cf5809580b5b1f4b6c95a
+    keywords:
+    - go
+    - web
+    - application
+    - myweb
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: contact@nobreak-labs.com
+      name: NoBreak Labs
+    name: myweb
+    sources:
+    - https://github.com/nobreak-labs/helm-charts
+    - https://github.com/orgs/nobreak-labs/packages/container/package/myweb
     type: application
     urls:
-    - https://nobreak-labs.github.io/helm-charts/go-myweb-0.1.0.tgz
+    - https://nobreak-labs.github.io/helm-charts/myweb-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-11T15:36:35.801331+09:00"
+generated: "2025-11-05T16:06:19.957022+09:00"
